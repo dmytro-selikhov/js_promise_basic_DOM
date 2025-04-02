@@ -2,13 +2,13 @@
 
 const promise1 = new Promise((resolve) => {
   document.querySelector('.logo').addEventListener('click', () => {
-    resolve('Promise1 resolved');
+    resolve('Promise was resolved!');
   });
 });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(new Error('Promise2 rejected'));
+    reject(new Error('Promise was rejected!'));
   }, 3000);
 });
 
@@ -21,9 +21,9 @@ function appendMessage(text, isError = false) {
 }
 
 promise1
-  .then(() => appendMessage('Promise was resolved!'))
-  .catch(() => appendMessage('Promise was rejected!', true));
+  .then((value) => appendMessage(value))
+  .catch((err) => appendMessage(err.message, true));
 
 promise2
-  .then(() => appendMessage('Promise was resolved!'))
-  .catch(() => appendMessage('Promise was rejected!', true));
+  .then((value) => appendMessage(value))
+  .catch((err) => appendMessage(err.message, true));
